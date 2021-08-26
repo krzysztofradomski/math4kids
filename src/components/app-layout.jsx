@@ -4,6 +4,7 @@ import { Grommet, Box, Button, Grid, Text } from 'grommet';
 import { grommet } from 'grommet/themes';
 import ConfettiExplosion from '@reonomy/react-confetti-explosion';
 import { useTranslation } from '../utils/useTranslations'
+import { log }  from '../utils/firebase';
 import { useMaths } from '../utils/useMaths';
 import { CONFIG } from '../utils//config'
 import Main from './main'
@@ -26,6 +27,7 @@ const HomePage = () => {
 
   const scorePoint = () => setScore(prev => prev + 1)
   const showConfetti = () => {
+    log('showConfetti')
     setIsExploding(true)
     setTimeout(() => {
       alert(t('correct'))
@@ -34,8 +36,7 @@ const HomePage = () => {
   }
 
   const chooseAnswer = value => event => {
-   
-    console.log(value)
+    log('chooseAnswer')
     if (value === answer) {
       getNewCalculation()
       scorePoint()

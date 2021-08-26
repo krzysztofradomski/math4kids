@@ -1,4 +1,5 @@
 import { useEffect, createContext, useContext, useState } from 'react'
+// import { withLog }  from './firebase';
 import { CONFIG } from './config'
 
 const calculations = CONFIG.calculations
