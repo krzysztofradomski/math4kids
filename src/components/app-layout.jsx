@@ -1,33 +1,47 @@
 import React, { useState } from 'react';
-import { Add, Subtract} from 'grommet-icons';
+// import { Add, Subtract} from 'grommet-icons';
 import { Grommet, Box, Button, Grid, Text } from 'grommet';
 import { grommet } from 'grommet/themes';
+import ConfettiExplosion from '@reonomy/react-confetti-explosion';
 import { useTranslation } from '../utils/useTranslations'
 import { useMaths } from '../utils/useMaths';
 import { CONFIG } from '../utils//config'
 import Main from './main'
 
-const Icons = {
-  add: <Add size="small" />,
-  subtract: <Subtract size="small" />,
-  divide: <Text size="small" weight="bold">/</Text>,
-  multiply: <Text size="small" weight="bold">*</Text>,
-}
+// const Icons = {
+//   add: <Add size="small" />,
+//   subtract: <Subtract size="small" />,
+//   divide: <Text size="small" weight="bold">/</Text>,
+//   multiply: <Text size="small" weight="bold">*</Text>,
+// }
 
 
 
 const HomePage = () => {
   const [sidebar, setSidebar] = useState(true);
   const { translate: t } = useTranslation()
-  const { answer, dummyAnswers, setCalculation, getNewCalculation } = useMaths()
+  const { answer, dummyAnswers, setCalculation, calculation, getNewCalculation, difficulty, setDifficulty } = useMaths()
+  const [score, setScore] = useState(0);
+  const [isExploding, setIsExploding] = useState(false);
+
+  const scorePoint = () => setScore(prev => prev + 1)
+  const showConfetti = () => {
+    setIsExploding(true)
+    setTimeout(() => {
+      alert(t('correct'))
+      setIsExploding(false)
+    }, 1000);
+  }
 
   const chooseAnswer = value => event => {
+   
     console.log(value)
     if (value === answer) {
-      alert('correct')
       getNewCalculation()
+      scorePoint()
+      showConfetti()
     } else if (value !== answer) {
-      alert('wrong')
+      alert(t('wrong'))
     }
   }
 
@@ -53,17 +67,34 @@ const HomePage = () => {
           background="brand"
         >
           <Button onClick={() => setSidebar(!sidebar)}>
-            <Text size="large">{t('math4kids')}</Text>
+            <Text 
+            size="large"
+            tip={{
+          plain: true,
+          dropProps: { align: { left: 'right' } },
+          content: (
+            <Box
+              pad="small"
+              elevation="big"
+              background="brand" // no opacity
+              round="xsmall"
+              margin="xsmall"
+              align="center"
+            >
+              {t('answers')}
+            </Box>
+          ),
+        }}
+            >{t('math4kids')}</Text>
           </Button>
           {[...Object.keys(CONFIG.calculations)].map(name => (
               <Button key={name} href="#" hoverIndicator onClick={chooseCalculation(name)} >
                 <Box pad='small'>
-                  <Text>{t(name)}</Text>
+                  <Text color={ name === calculation ? 'accent-1' : 'inherit'} >{t(name)}</Text>
                 </Box>
               </Button>
             ))}
-          <Text>{t('score')}: 0 </Text>
-          <Button onClick={() => getNewCalculation()}>Get new calculation</Button>
+          <Text>{t('score')}: {score} </Text>
         </Box>
         {sidebar && (
           <Box
@@ -75,17 +106,36 @@ const HomePage = () => {
               { type: 'slideRight', size: 'xlarge', duration: 150 },
             ]}
           >
+            <Button onClick={() => getNewCalculation()}>
+                <Box pad='medium'>
+                  <Text>{t('getNewCalc')}</Text>
+                </Box>
+            </Button>
+
+            <Box pad='medium' direction="row" align="center">
+            <Text style={{"&::hover": "cursor"}}>{t('difficulty')}</Text>
+              <Text  color={difficulty >= 20 ? 'accent-1' : 'inherit'} onClick={() => setDifficulty(20)} textAlign="center">*</Text>
+              <Text color={difficulty >= 40 ? 'accent-1' : 'inherit'} onClick={() => setDifficulty(40)} textAlign="center">**</Text>
+              <Text color={difficulty >= 60 ? 'accent-1' : 'inherit'} onClick={() => setDifficulty(60)} textAlign="center">***</Text>
+            </Box>
+
+            <Box pad='medium'>
+              <Text  textAlign="center">{t('answers')}</Text>
+            </Box>
+
+           
             {[answer, ...dummyAnswers].map(answer => (
               <Button key={answer} href="#" hoverIndicator  onClick={chooseAnswer(answer)}>
                 <Box pad='medium'>
-                  <Text>{answer}</Text>
+                  <Text size="xxlarge" textAlign="center" >{answer}</Text>
                 </Box>
               </Button>
             ))}
           </Box>
         )}
         <Box gridArea="main" justify="center" align="center">
-         <Main />
+        
+         {isExploding ? <ConfettiExplosion /> :  <Main />}
         </Box>
       </Grid>
     </Grommet>
