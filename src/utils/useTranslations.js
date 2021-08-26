@@ -11,7 +11,7 @@ function TranslationsProvider({ children }) {
   const [language, setLanguage] = useLocalStorage('language', '')
   const languages = ['pl', 'en']
   useEffect(() => {
-    if (process.browser && window.navigator?.language && !language) {
+    if (window.navigator?.language) {
       currentLanguage = window.navigator.language
       setLanguage(currentLanguage)
       console.log('language set from browser: ', currentLanguage)
