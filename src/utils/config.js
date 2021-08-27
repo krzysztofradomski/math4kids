@@ -1,9 +1,9 @@
 export const CONFIG = {
-    language: 'pl',
-    calculations: {
-      add: '+',
-      subtract: '-',
-      multiply: '*',
-      divide: '/',
+  language: 'pl',
+  calculations: {
+    add: '+',
+    subtract: '-',
+    multiply: '*',
+    divide: '/'
   }
 }

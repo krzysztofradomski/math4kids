@@ -14,6 +14,7 @@ function TranslationsProvider({ children }) {
     if (window.navigator?.language) {
       currentLanguage = window.navigator.language
       setLanguage(currentLanguage)
+      // eslint-disable-next-line no-console
       console.log('language set from browser: ', currentLanguage)
     }
   }, [language, setLanguage])
