@@ -2,6 +2,7 @@
 import { useEffect, createContext, useContext, useState } from 'react'
 // import { withLog }  from './firebase';
 import { CONFIG } from './config'
+import { shuffleArray } from './misc'
 
 const calculations = CONFIG.calculations
 
@@ -45,7 +46,8 @@ function MathsProvider({ children }) {
     setAnswer,
     getNewCalculation: () => setTrigger(!trigger),
     setDifficulty: difficulty => setSeed(difficulty),
-    difficulty: seed
+    difficulty: seed,
+    choices: shuffleArray([answer, ...dummyAnswers])
   }
 
   return <MathsContext.Provider value={value}>{children}</MathsContext.Provider>

@@ -9,7 +9,6 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:jsx-a11y/recommended',
     'plugin:react/recommended',
-    // '@next/eslint-plugin-next',
     'standard'
   ],
   parser: 'babel-eslint',
