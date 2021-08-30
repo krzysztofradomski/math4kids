@@ -5,5 +5,10 @@ export const CONFIG = {
     subtract: '-',
     multiply: '*',
     divide: '/'
+  },
+  fontSizes: {
+    small: '3xl',
+    medium: '3xl',
+    large: '6xl'
   }
 }

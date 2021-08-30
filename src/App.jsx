@@ -10,9 +10,9 @@ function App() {
   }, [])
   return (
     <MathsProvider>
-    <TranslationsProvider>
-      <Layout />
-    </TranslationsProvider>
+      <TranslationsProvider>
+        <Layout />
+      </TranslationsProvider>
     </MathsProvider>
   )
 }

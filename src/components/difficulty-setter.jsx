@@ -3,12 +3,14 @@ import { Box, Button, Text } from 'grommet'
 import { useMaths } from '../utils/useMaths'
 import { useTranslation } from '../utils/useTranslations'
 
-const DifficultySetter = () => {
+const DifficultySetter = ({ size }) => {
   const { translate: t } = useTranslation()
   const { difficulty, setDifficulty } = useMaths()
   return (
     <Box direction="row" align="center">
-      <Text style={{ '&::hover': 'cursor' }}>{t('difficulty')}</Text>
+      <Text style={{ '&::hover': 'cursor' }} size={size !== 'small' ? 'inherit' : 'xsmall'}>
+        {t('difficulty')}
+      </Text>
       <Box pad="small" direction="row" align="center">
         <Button
           pad="small"

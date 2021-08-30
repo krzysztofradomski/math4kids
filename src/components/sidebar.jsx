@@ -2,22 +2,23 @@ import React from 'react'
 import { Box, Text, Button, Grid } from 'grommet'
 import { useMaths } from '../utils/useMaths'
 import { getRandomAccentColor } from '../utils/misc'
+import { CONFIG } from '../utils/config'
 
-const Sidebar = ({ chooseAnswer }) => {
+const Sidebar = ({ chooseAnswer, size }) => {
   const { choices } = useMaths()
   return (
-    <Box gridArea="sidebar" background="brand">
-      <Grid fill gridArea="sidebar" rows={['flex', 'flex', 'flex']} columns={['auto']}>
+    <Box gridArea={size !== 'small' ? 'sidebar' : 'bottom'} background="brand">
+      <Grid fill rows={['flex', 'flex', 'flex']} columns={['auto']}>
         {choices.map((answer, i) => (
           <Button key={`key-${i}-${answer}`} href="#" hoverIndicator onClick={chooseAnswer(answer)}>
             <Box
-              pad="large"
+              pad={size}
               background={getRandomAccentColor()}
               fill
               justify="center"
               animation={{ type: 'slideLeft', duration: 1000 }}
             >
-              <Text size="6xl" textAlign="center" color="white">
+              <Text size={CONFIG.fontSizes[size]} textAlign="center" color="white">
                 {answer}
               </Text>
             </Box>
