@@ -1,4 +1,5 @@
 export const CONFIG = {
+  languages: ['pl', 'en'],
   language: 'pl',
   calculations: {
     add: '+',

@@ -5,23 +5,21 @@ import dictionary from './dictionary'
 
 const TranlationsContext = createContext()
 
-let currentLanguage = CONFIG.language
-
 function TranslationsProvider({ children }) {
   const [language, setLanguage] = useLocalStorage('language', '')
-  const languages = ['pl', 'en']
+  const languages = CONFIG.languages
   useEffect(() => {
-    if (window.navigator?.language) {
-      currentLanguage = window.navigator.language
+    let currentLanguage
+    if (!language && window.navigator?.language) {
+      currentLanguage = window.navigator.language || CONFIG.language
       setLanguage(currentLanguage)
-      window.document.title = dictionary.math4kids[currentLanguage]
-      // eslint-disable-next-line no-console
-      console.log('language set from browser: ', currentLanguage)
+    } else if (language) {
+      currentLanguage = language
+      setLanguage(currentLanguage)
     }
+    window.document.title = dictionary.math4kids[currentLanguage]
   }, [language, setLanguage])
-  useEffect(() => {
-    currentLanguage = language || 'en'
-  }, [language])
+
   const translate = key => dictionary[key]?.[language] || '...'
   const value = { translate, setLanguage, language, languages }
   return <TranlationsContext.Provider value={value}>{children}</TranlationsContext.Provider>

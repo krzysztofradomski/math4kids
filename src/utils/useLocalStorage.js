@@ -26,5 +26,3 @@ export function useLocalStorage(key, initialValue) {
   }
   return [storedValue, setValue]
 }
-
-export const useLocalTheme = theme => useLocalStorage('theme', theme)
