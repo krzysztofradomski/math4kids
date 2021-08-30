@@ -14,6 +14,7 @@ function TranslationsProvider({ children }) {
     if (window.navigator?.language) {
       currentLanguage = window.navigator.language
       setLanguage(currentLanguage)
+      window.document.title = dictionary.math4kids[currentLanguage]
       // eslint-disable-next-line no-console
       console.log('language set from browser: ', currentLanguage)
     }

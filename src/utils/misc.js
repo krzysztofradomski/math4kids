@@ -6,3 +6,8 @@ export function shuffleArray(array) {
   }
   return _arr
 }
+
+const colors = ['brand', 'accent-1', 'accent-2', 'accent-3', 'accent-4']
+export function getRandomAccentColor(n = 5) {
+  return colors[parseInt(Math.random() * n)]
+}

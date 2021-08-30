@@ -9,6 +9,7 @@ import { useMaths } from '../utils/useMaths'
 import Main from './main'
 import Sidebar from './sidebar'
 import Header from './header'
+import Controls from './controls'
 
 const Layout = () => {
   const [sidebar, setSidebar] = useState(true)
@@ -66,7 +67,7 @@ const Layout = () => {
         ]}
       >
         <Box gridArea="header" direction="row" align="center" justify="between" pad="medium" background="brand">
-          <Header toggleSidebar={toggleSidebar} score={score} />
+          <Header toggleSidebar={toggleSidebar} />
         </Box>
         {sidebar && <Sidebar chooseAnswer={chooseAnswer} />}
         <Box
@@ -78,6 +79,7 @@ const Layout = () => {
           {isExploding ? <ConfettiExplosion /> : null}
           <Main showAnswer={isExploding} />
         </Box>
+        <Controls score={score} />
       </Grid>
       {open && (
         <Layer
