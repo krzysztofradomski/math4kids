@@ -44,6 +44,7 @@ const Layout = () => {
       scorePoint()
       showConfetti()
     } else {
+      window.navigator.vibrate(200)
       setJiggle(true)
       setTimeout(() => {
         setJiggle(false)
