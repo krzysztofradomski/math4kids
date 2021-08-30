@@ -10,6 +10,7 @@ async function lockScreen() {
   try {
     lock = await navigator.wakeLock.request('screen')
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.log('Wake Lock error: ', err)
   }
   return await lock.release()
