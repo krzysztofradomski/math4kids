@@ -13,10 +13,11 @@ const Sidebar = ({ chooseAnswer, size }) => {
           <Button key={`key-${i}-${answer}`} href="#" hoverIndicator onClick={chooseAnswer(answer)}>
             <Box
               pad={size}
-              background={getRandomAccentColor()}
+              background={getRandomAccentColor(4)}
               fill
               justify="center"
               animation={{ type: 'slideLeft', duration: 1000 }}
+              border={{ color: 'brand', size: 'small' }}
             >
               <Text size={CONFIG.fontSizes[size]} textAlign="center" color="white">
                 {answer}

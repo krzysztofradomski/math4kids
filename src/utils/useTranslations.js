@@ -11,17 +11,14 @@ function TranslationsProvider({ children }) {
   useEffect(() => {
     let currentLanguage
     if (!language && window.navigator?.language) {
-      currentLanguage = window.navigator.language || CONFIG.language
-      setLanguage(currentLanguage)
+      currentLanguage = window.navigator.language.split('-')[0] || CONFIG.language
     } else if (language) {
       currentLanguage = language
-      setLanguage(currentLanguage)
     }
+    setLanguage(currentLanguage)
     window.document.title = dictionary.math4kids[currentLanguage]
   }, [language, setLanguage])
-
-  const translate = key => dictionary[key]?.[language] || '...'
-  const value = { translate, setLanguage, language, languages }
+  const value = { translate: key => dictionary[key]?.[language] || '...', setLanguage, language, languages }
   return <TranlationsContext.Provider value={value}>{children}</TranlationsContext.Provider>
 }
 function useTranslation() {

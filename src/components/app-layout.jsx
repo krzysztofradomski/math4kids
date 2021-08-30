@@ -35,7 +35,7 @@ const Layout = () => {
     setTimeout(() => {
       setIsExploding(false)
       getNewCalculation()
-    }, 3000)
+    }, 4000)
   }
 
   const chooseAnswer = value => event => {

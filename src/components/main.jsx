@@ -19,6 +19,7 @@ async function lockScreen() {
 const Main = ({ showAnswer = false, jiggle, size }) => {
   const { numbers, calculation, answer } = useMaths()
   useEffect(() => lockScreen(), [])
+  const [color1, color2] = [getRandomAccentColor(), getRandomAccentColor()]
   return (
     <Box
       gridArea="main"
@@ -33,7 +34,7 @@ const Main = ({ showAnswer = false, jiggle, size }) => {
             animation={{ type: 'fadeIn', duration: (i + 1) * 1000 }}
             key={val}
             pad={size}
-            background={getRandomAccentColor()}
+            background={i % 2 === 0 ? color1 : color2}
             round
           >
             <Text size={CONFIG.fontSizes[size]} textAlign="center" color="white">
