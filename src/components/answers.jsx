@@ -1,11 +1,15 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
 import { Box, Text, Button, Grid } from 'grommet'
 import { useMaths } from '../utils/useMaths'
-import { getRandomAccentColor } from '../utils/misc'
+import { getRandomAccentColor as gc } from '../utils/misc'
 import { CONFIG } from '../utils/config'
 
-const Sidebar = ({ chooseAnswer, size }) => {
+const Answers = ({ chooseAnswer, size }) => {
   const { choices } = useMaths()
+  const [colors, setColors] = useState([gc(4), gc(4), gc(4), gc(4)])
+  useEffect(() => {
+    setColors([gc(4), gc(4), gc(4), gc(4)])
+  }, [choices])
   return (
     <Box gridArea={size !== 'small' ? 'sidebar' : 'bottom'} background="brand">
       <Grid fill rows={['flex', 'flex', 'flex']} columns={['auto']}>
@@ -13,7 +17,7 @@ const Sidebar = ({ chooseAnswer, size }) => {
           <Button key={`key-${i}-${answer}`} href="#" hoverIndicator onClick={chooseAnswer(answer)}>
             <Box
               pad={size}
-              background={getRandomAccentColor(4)}
+              background={colors[i]}
               fill
               justify="center"
               animation={{ type: 'slideLeft', duration: 1000 }}
@@ -30,4 +34,4 @@ const Sidebar = ({ chooseAnswer, size }) => {
   )
 }
 
-export default Sidebar
+export default Answers

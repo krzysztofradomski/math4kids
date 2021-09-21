@@ -6,7 +6,7 @@ import { useTranslation } from '../utils/useTranslations'
 import { log } from '../utils/firebase'
 import { useMaths } from '../utils/useMaths'
 import Main from './main'
-import Sidebar from './sidebar'
+import Answers from './answers'
 import Header from './header'
 import Controls from './controls'
 
@@ -23,7 +23,7 @@ const Layout = () => {
     setOpen(true)
     setTimeout(() => {
       setOpen(undefined)
-    }, 3000)
+    }, 2000)
   }
   const onClose = () => setOpen(undefined)
 
@@ -35,7 +35,7 @@ const Layout = () => {
     setTimeout(() => {
       setIsExploding(false)
       getNewCalculation()
-    }, 4000)
+    }, 2000)
   }
 
   const chooseAnswer = value => event => {
@@ -72,7 +72,7 @@ const Layout = () => {
               ]}
             >
               <Header toggleSidebar={toggleSidebar} size={size} />
-              {sidebar && <Sidebar chooseAnswer={chooseAnswer} size={size} />}
+              {sidebar && <Answers chooseAnswer={chooseAnswer} size={size} />}
               <Main showAnswer={isExploding} jiggle={jiggle} size={size} />
               <Controls score={score} size={size} />
             </Grid>
@@ -103,7 +103,6 @@ const Layout = () => {
                 </Box>
               </Layer>
             )}
-            )
           </>
         )}
       </ResponsiveContext.Consumer>
