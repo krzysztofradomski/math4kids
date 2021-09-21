@@ -12,13 +12,13 @@ const Header = ({ toggleSidebar, size }) => {
   return (
     <Box gridArea="header" direction="row" align="center" justify="between" pad="medium" background="brand">
       <Button onClick={toggleSidebar}>
-        <Text size="large">{t('answers')}</Text>
+        <Text size={size}>{t('answers')}</Text>
       </Button>
       {[...Object.keys(CONFIG.calculations)].map(name => (
         <Button key={name} href="#" hoverIndicator onClick={chooseCalculation(name)}>
           <Box pad="small">
-            <Text color={name === calculation ? 'accent-1' : 'inherit'}>
-              {size !== 'small' ? t(name) : CONFIG.calculations[name]}
+            <Text size={size} color={name === calculation ? 'accent-1' : 'inherit'}>
+              {t(name)}
             </Text>
           </Box>
         </Button>

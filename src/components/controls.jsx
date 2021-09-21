@@ -8,7 +8,7 @@ const Controls = ({ score, size }) => {
   const { getNewCalculation } = useMaths()
   const { translate: t } = useTranslation()
   return (
-    <Box gridArea="footer" direction={size !== 'small' ? 'column' : 'row'}>
+    <Box gridArea="footer" direction={size !== 'small' ? 'column' : 'row'} flex justify="center">
       <Box justify="center" margin="small" pad="small" background={{ color: 'brand', opacity: true }} elevation="large">
         <Text size={size !== 'small' ? 'inherit' : 'xsmall'}>
           {t('score')}: {score}
