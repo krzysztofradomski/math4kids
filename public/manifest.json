@@ -5,6 +5,15 @@
   "display": "standalone",
   "theme_color": "#7D4CDB",
   "background_color": "#ffffff",
+  "orientation": "any",
+  "description": "This app helps you teach basic mathematics to children.",
+  "categories": ["learning", "mathematics"],
+  "screenshots": [{
+    "src": "mobile-screenshot.jpg",
+    "sizes": "360x636",
+    "platform": "android",
+    "label": "Basic mobile view"
+  }],
   "icons": [
     {
       "src": "windows10/SmallTile.scale-100.png",
