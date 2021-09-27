@@ -1,0 +1,6 @@
+[{
+        "relation": ["delegate_permission/common.handle_all_urls"],
+        "target" : { "namespace": "android_app", "package_name": "app.web.math4kids_pwa.twa",
+                     "sha256_cert_fingerprints": ["2A:FA:0F:82:C8:6C:3A:93:69:86:A2:AB:1E:5D:1C:08:08:7A:02:B1:F0:5D:2C:19:1F:6C:3C:D1:77:40:81:21"] }
+      }
+]
