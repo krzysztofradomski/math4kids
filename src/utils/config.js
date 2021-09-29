@@ -1,6 +1,6 @@
 export const CONFIG = {
-  languages: ['pl', 'en'],
-  language: 'pl',
+  languages: ['pl', 'en', 'de', 'es', 'zh'],
+  language: 'en',
   calculations: {
     add: '+',
     subtract: '-',

@@ -1,6 +1,5 @@
-/* eslint-disable no-console */
 import { useEffect, createContext, useContext, useState } from 'react'
-// import { withLog }  from './firebase';
+import { firelog } from './firebase'
 import { CONFIG } from './config'
 import { shuffleArray } from './misc'
 
@@ -27,7 +26,7 @@ function MathsProvider({ children }) {
       new Set([n1, n2, d1, d2]).size !== [n1, n2, d1, d2].length ||
       (calculation === 'divide' && (n1 / n2) % 1 !== 0)
     ) {
-      console.log('recalculation  triggered')
+      firelog('recalculation  triggered')
       setTrigger(prev => !trigger)
     } else {
       setNumbers(prev => [n1, n2])

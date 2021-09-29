@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react'
-import { log } from './utils/firebase'
+import { firelog } from './utils/firebase'
 import { TranslationsProvider } from './utils/useTranslations'
 import { MathsProvider } from './utils/useMaths'
 import Layout from './components/app-layout'
 
 function App() {
   useEffect(() => {
-    log('app_started')
+    firelog('app_started')
   }, [])
   return (
     <MathsProvider>

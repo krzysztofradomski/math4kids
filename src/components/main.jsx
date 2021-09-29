@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Text, Grid, Box } from 'grommet'
 import ConfettiExplosion from '@reonomy/react-confetti-explosion'
 import { CONFIG } from '../utils//config'
+import { firelog } from '../utils/firebase'
 import { useMaths } from '../utils/useMaths'
 import { getRandomAccentColor } from '../utils/misc'
 
@@ -11,7 +12,7 @@ async function lockScreen() {
     lock = await navigator.wakeLock.request('screen')
   } catch (err) {
     // eslint-disable-next-line no-console
-    console.log('Wake Lock error: ', err)
+    firelog('Wake Lock error: ', err)
   }
   return await lock.release()
 }

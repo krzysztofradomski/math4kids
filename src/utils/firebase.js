@@ -20,4 +20,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const analytics = getAnalytics(app)
 
-export const log = eventName => logEvent(analytics, eventName)
+export const firelog = eventName => {
+  // eslint-disable-next-line no-console
+  console.log(eventName)
+  logEvent(analytics, eventName)
+}

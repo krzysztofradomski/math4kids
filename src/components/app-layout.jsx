@@ -3,7 +3,7 @@ import { Grommet, ResponsiveContext, Box, Grid, Layer, Text, Button } from 'grom
 import { FormClose, StatusGood } from 'grommet-icons'
 import { grommet } from 'grommet/themes'
 import { useTranslation } from '../utils/useTranslations'
-import { log } from '../utils/firebase'
+import { firelog } from '../utils/firebase'
 import { useMaths } from '../utils/useMaths'
 import Main from './main'
 import Answers from './answers'
@@ -16,20 +16,20 @@ const Layout = () => {
   const { answer, getNewCalculation } = useMaths()
   const [score, setScore] = useState(0)
   const [isExploding, setIsExploding] = useState(false)
-  const [open, setOpen] = useState()
-  const [jiggle, setJiggle] = useState()
+  const [toast, setToast] = useState(false)
+  const [jiggle, setJiggle] = useState(false)
 
   const onOpen = () => {
-    setOpen(true)
+    setToast(true)
     setTimeout(() => {
-      setOpen(undefined)
+      setToast(false)
     }, 2000)
   }
-  const onClose = () => setOpen(undefined)
+  const onClose = () => setToast(false)
 
   const scorePoint = () => setScore(prev => prev + 1)
   const showConfetti = () => {
-    log('correct_answer')
+    firelog('correct_answer')
     onOpen()
     setIsExploding(true)
     setTimeout(() => {
@@ -39,7 +39,7 @@ const Layout = () => {
   }
 
   const chooseAnswer = value => event => {
-    log('choose_answer')
+    firelog('choose_answer')
     if (value === answer) {
       scorePoint()
       showConfetti()
@@ -76,7 +76,7 @@ const Layout = () => {
               <Main showAnswer={isExploding} jiggle={jiggle} size={size} />
               <Controls score={score} size={size} />
             </Grid>
-            {open && (
+            {toast && (
               <Layer
                 position="bottom"
                 modal={false}
