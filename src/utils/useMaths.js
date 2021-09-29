@@ -26,7 +26,7 @@ function MathsProvider({ children }) {
       new Set([n1, n2, d1, d2]).size !== [n1, n2, d1, d2].length ||
       (calculation === 'divide' && (n1 / n2) % 1 !== 0)
     ) {
-      firelog('recalculation  triggered')
+      firelog('recalculation _triggered')
       setTrigger(prev => !trigger)
     } else {
       setNumbers(prev => [n1, n2])

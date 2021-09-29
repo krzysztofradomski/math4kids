@@ -12,7 +12,7 @@ async function lockScreen() {
     lock = await navigator.wakeLock.request('screen')
   } catch (err) {
     // eslint-disable-next-line no-console
-    firelog('Wake Lock error: ', err)
+    firelog('wake_lock_error', err)
   }
   return await lock.release()
 }
